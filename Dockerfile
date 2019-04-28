@@ -1,6 +1,5 @@
 FROM alpine:3.7
-MAINTAINER Sylvain Desbureaux <sylvain@desbureaux.fr> #Original creator of this Dockerfile
-MAINTAINER Cedric Gatay <c.gatay@code-troopers.com>
+MAINTAINER Kiritzai <archetype.demo@gmail.com>
 
 # install packages &
 ## OpenZwave installation &
@@ -80,7 +79,7 @@ RUN apk add --no-cache \
 	make install && \
 	rm -rf /src/domoticz/ && \
 	# Cleanup
-	apk del \ 
+	apk del \
 		git \
 		build-base cmake \
 		boost-dev \

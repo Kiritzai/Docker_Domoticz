@@ -14,7 +14,7 @@ https://hub.docker.com/r/kiritzai/domoticz/
 **Pull image**
 
 ```
-docker pull cgatay/domoticz:$VERSION
+docker pull kiritzai/domoticz:master
 
 ```
 

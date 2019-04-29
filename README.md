@@ -21,7 +21,7 @@ docker pull kiritzai/domoticz:master
 **Run container**
 
 ```
-docker run -d -p 8080:8080 --name=<container name> -v <path for config files>:/config -v /etc/localtime:/etc/localtime:ro --device=<device_id> cgatay/domoticz:$VERSION
+docker run -d -p 8080:8080 --name=<container name> -v <path for config files>:/config -v /etc/localtime:/etc/localtime:ro --device=<device_id> kiritzai/domoticz:latest
 ```
 
 Please replace all user variables in the above command defined by <> with the correct values (you can have several USB devices attached, just add other `--device=<device_id>`).

@@ -36,7 +36,7 @@ RUN apk add --no-cache \
 		boost-date_time \
 		sqlite sqlite-dev \
 		curl libcurl curl-dev \
-		libssl1.0 libressl-dev \
+		libssl1.1 libressl-dev \
 		libusb libusb-dev \
 		libusb-compat libusb-compat-dev \
 		lua5.2-dev \
@@ -45,7 +45,7 @@ RUN apk add --no-cache \
 		coreutils \
 		tzdata \
 		zlib zlib-dev \
-		udev eudev-dev \
+		eudev-dev \
 		linux-headers && \
 	# Build OpenZwave
 	git clone --depth 2 https://github.com/OpenZWave/open-zwave.git /src/open-zwave && \

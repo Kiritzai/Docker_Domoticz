@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM alpine:edge
 MAINTAINER Kiritzai <archetype.demo@gmail.com>
 
 # install packages &

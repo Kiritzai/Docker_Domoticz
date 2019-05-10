@@ -31,6 +31,7 @@ RUN apk add --no-cache \
 		python3-dev \
 		build-base cmake \
 		boost \
+		boost-libs \
 		boost-dev \
 		boost-thread \
 		boost-system \

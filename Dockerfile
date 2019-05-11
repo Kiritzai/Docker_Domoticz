@@ -17,7 +17,6 @@ RUN apk add --no-cache \
 		git \
 		python3-dev \
 		build-base \
-		cmake \
 		boost-dev \
 		sqlite \
 		sqlite-dev \
@@ -39,6 +38,7 @@ RUN apk add --no-cache \
 		zlib-dev \
 		eudev-dev \
 		linux-headers && \
+	apk add cmake  --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main && \
 	# Build OpenZwave
 	git clone --depth 2 https://github.com/OpenZWave/open-zwave.git /src/open-zwave && \
 	ln -s /src/open-zwave /src/open-zwave-read-only && \

@@ -18,6 +18,8 @@ RUN apk add --no-cache \
 		python3-dev \
 		build-base \
 		boost-dev \
+		boost-system \
+		boost-thread \
 		sqlite \
 		sqlite-dev \
 		curl \

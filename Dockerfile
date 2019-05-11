@@ -38,6 +38,7 @@ RUN apk add --no-cache \
 		tzdata \
 		zlib \
 		zlib-dev \
+		musl-dev \
 		eudev-dev \
 		linux-headers && \
 	apk add cmake  --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main && \

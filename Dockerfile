@@ -1,19 +1,6 @@
 FROM alpine:3.9
 MAINTAINER Kiritzai <archetype.demo@gmail.com>
 
-# install packages &
-## OpenZwave installation &
-# grep git version of openzwave &
-# untar the files &
-# compile &
-# "install" in order to be found by domoticz &
-## Domoticz installation &
-# clone git source in src &
-# Domoticz needs the full history to be able to calculate the version string &
-# prepare makefile &
-# compile &
-# remove git and tmp dirs
-
 ARG APP_HASH
 ARG VCS_REF
 ARG BUILD_DATE
@@ -29,23 +16,27 @@ LABEL org.label-schema.vcs-ref=$APP_HASH \
 RUN apk add --no-cache \
 		git \
 		python3-dev \
-		build-base cmake \
-		boost-libs \
+		build-base \
+		cmake \
 		boost-dev \
-		boost-thread \
-		boost-system \
-		boost-date_time \
-		sqlite sqlite-dev \
-		curl libcurl curl-dev \
-		libssl1.1 libressl-dev \
-		libusb libusb-dev \
-		libusb-compat libusb-compat-dev \
+		sqlite \
+		sqlite-dev \
+		curl \
+		libcurl \
+		curl-dev \
+		libssl1.1 \
+		libressl-dev \
+		libusb \
+		libusb-dev \
+		libusb-compat \
+		libusb-compat-dev \
 		lua5.2-dev \
 		minizip-dev \
 		mosquitto-dev \
 		coreutils \
 		tzdata \
-		zlib zlib-dev \
+		zlib \
+		zlib-dev \
 		eudev-dev \
 		linux-headers && \
 	# Build OpenZwave

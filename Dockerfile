@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.9
 MAINTAINER Kiritzai <archetype.demo@gmail.com>
 
 # install packages &
@@ -75,7 +75,6 @@ RUN apk add --no-cache \
 		-DUSE_BUILTIN_MQTT=OFF \
 		-DUSE_BUILTIN_SQLITE=OFF \
 		-DUSE_STATIC_OPENZWAVE=OFF \
-		-DBoost_USE_STATIC_LIBS=ON \
 		-Wno-dev && \
 	make && \
 	make install && \

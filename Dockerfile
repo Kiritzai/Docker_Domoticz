@@ -68,6 +68,7 @@ RUN apk add --no-cache \
 		-DUSE_BUILTIN_MQTT=OFF \
 		-DUSE_BUILTIN_SQLITE=OFF \
 		-DUSE_STATIC_OPENZWAVE=OFF \
+		-DUSE_STATIC_BOOST=OFF \
 		-Wno-dev && \
 	make && \
 	make install && \

@@ -14,17 +14,19 @@ LABEL org.label-schema.vcs-ref=$APP_HASH \
       org.label-schema.build-date=$BUILD_DATE
 
 RUN apk add --no-cache \
-		git \
-		python3-dev \
 		build-base \
 		boost-dev \
 		boost-system \
 		boost-thread \
-		sqlite \
-		sqlite-dev \
+		coreutils \
 		curl \
-		libcurl \
 		curl-dev \
+		eudev \
+		eudev-dev \
+		git \
+		gcc \
+		g++ \
+		libcurl \
 		libssl1.1 \
 		libmicrohttpd \
 		libressl-dev \
@@ -33,17 +35,18 @@ RUN apk add --no-cache \
 		libusb-compat \
 		libusb-compat-dev \
 		lua5.2-dev \
+		make \
 		minizip-dev \
 		mosquitto-dev \
-		coreutils \
+		musl-dev \
+		python3-dev \
+		sqlite \
+		sqlite-dev \
 		tzdata \
 		zlib \
 		zlib-dev \
-		musl-dev \
-		eudev \
-		eudev-dev \
 		linux-headers && \
-	apk add cmake  --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main && \
+	apk add cmake --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main && \
 	# Build OpenZwave
 	git clone --depth 2 https://github.com/OpenZWave/open-zwave.git /src/open-zwave && \
 	# git clone -b 1.4 --single-branch https://github.com/OpenZWave/open-zwave.git /src/open-zwave && \
@@ -81,6 +84,9 @@ RUN apk add --no-cache \
 	# Cleanup
 	apk del \
 		git \
+		gcc \
+		g++ \
+		make \
 		build-base cmake \
 		boost-dev \
 		sqlite-dev \

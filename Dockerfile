@@ -45,8 +45,8 @@ RUN apk add --no-cache \
 		linux-headers && \
 	apk add cmake  --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main && \
 	# Build OpenZwave
-	# git clone --depth 2 https://github.com/OpenZWave/open-zwave.git /src/open-zwave && \
-	git clone -b 1.4 --single-branch https://github.com/OpenZWave/open-zwave.git /src/open-zwave && \
+	git clone --depth 2 https://github.com/OpenZWave/open-zwave.git /src/open-zwave && \
+	# git clone -b 1.4 --single-branch https://github.com/OpenZWave/open-zwave.git /src/open-zwave && \
 	ln -s /src/open-zwave /src/open-zwave-read-only && \
 	cd /src/open-zwave && \
 	make && \

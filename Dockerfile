@@ -84,9 +84,7 @@ RUN apk add --no-cache \
 	# Cleanup
 	apk del \
 		curl \
-		minizip-dev \
 		sqlite-dev \
-		libcurl \
 		musl-dev \
 		eudev \
 		git \

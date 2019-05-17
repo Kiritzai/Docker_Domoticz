@@ -83,11 +83,18 @@ RUN apk add --no-cache \
 	rm -rf /src/domoticz/ && \
 	# Cleanup
 	apk del \
+		curl \
+		minizip-dev \
+		sqlite-dev \
+		libcurl \
+		musl-dev \
+		eudev \
 		git \
 		gcc \
 		g++ \
 		make \
-		build-base cmake \
+		build-base \
+		cmake \
 		boost-dev \
 		sqlite-dev \
 		curl-dev \

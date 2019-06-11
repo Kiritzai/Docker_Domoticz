@@ -96,9 +96,7 @@ RUN apk add --no-cache \
 		coreutils \
 		zlib-dev \
 		eudev-dev \
-		linux-headers \
-		build-dependencies \
-		build-dependencies-edge
+		linux-headers
 
 VOLUME /config
 

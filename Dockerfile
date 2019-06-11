@@ -67,7 +67,7 @@ RUN apk add --no-cache \
 	git reset --hard ${APP_HASH} && \
 	cmake \
 	 	-DBUILD_SHARED_LIBS=True \
-	 	-DCMAKE_BUILD_TYPE=Release \
+	 	-DCMAKE_BUILD_TYPE=Release CMakeLists.txt \
 		-DCMAKE_INSTALL_PREFIX=/opt/domoticz \
 		-DOpenZWave=/usr/lib/libopenzwave.so \
 		-DUSE_BUILTIN_LUA=OFF \
@@ -77,20 +77,15 @@ RUN apk add --no-cache \
 		-DUSE_STATIC_OPENZWAVE=OFF \
 		-DUSE_STATIC_LIBSTDCXX=OFF \
 		-DUSE_STATIC_BOOST=OFF \
+		-DUSE_OPENSSL_STATIC=OFF \
 		-Wno-dev && \
 	make && \
 	make install && \
 	rm -rf /src/domoticz/ && \
 	# Cleanup
 	apk del \
-		curl \
 		sqlite-dev \
-		musl-dev \
-		eudev \
 		git \
-		gcc \
-		g++ \
-		make \
 		build-base \
 		cmake \
 		boost-dev \

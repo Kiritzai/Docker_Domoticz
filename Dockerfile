@@ -65,7 +65,6 @@ RUN apk add --no-cache \
 	# Build Domoticz
 	git clone https://github.com/domoticz/domoticz.git /src/domoticz && \
 	cd /src/domoticz && \
-	git reset --hard ${APP_HASH} && \
 	cmake \
 	 	-DBUILD_SHARED_LIBS=True \
 	 	-DCMAKE_BUILD_TYPE=Release CMakeLists.txt \
@@ -84,7 +83,7 @@ RUN apk add --no-cache \
 	make install && \
 	rm -rf /src/domoticz/ && \
 	# Cleanup
-	apk del \
+	apk del --purge \
 		git \
 		build-base \
 		cmake \
@@ -97,7 +96,9 @@ RUN apk add --no-cache \
 		coreutils \
 		zlib-dev \
 		eudev-dev \
-		linux-headers
+		linux-headers \
+		build-dependencies \
+		build-dependencies-edge
 
 VOLUME /config
 

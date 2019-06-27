@@ -1,17 +1,10 @@
-FROM alpine:3.9
-MAINTAINER Kiritzai <archetype.demo@gmail.com>
+FROM lsiobase/alpine:3.9
 
-ARG APP_HASH
-ARG VCS_REF
 ARG BUILD_DATE
+ARG VERSION
 
-LABEL org.label-schema.vcs-ref=$APP_HASH \
-      org.label-schema.vcs-url="https://github.com/domoticz/domoticz" \
-      org.label-schema.url="https://domoticz.com/" \
-      org.label-schema.name="Domoticz" \
-      org.label-schema.docker.dockerfile="/Dockerfile" \
-      org.label-schema.license="GPLv3" \
-      org.label-schema.build-date=$BUILD_DATE
+LABEL build_version="Kirtzai version:- ${VERSION} Build-date:- ${BUILD_DATE}"
+LABEL maintainer="Kiritzai"
 
 RUN apk add --no-cache --virtual=build-dependencies \
 		argp-standalone \
@@ -19,7 +12,6 @@ RUN apk add --no-cache --virtual=build-dependencies \
 		automake \
 		binutils \
 		boost \
-		boost-dev \
 		boost-system \
 		boost-thread \
 		curl \
@@ -53,8 +45,7 @@ RUN apk add --no-cache --virtual=build-dependencies \
 		zlib-dev && \
 	apk add cmake --no-cache --virtual=build-dependencies-edge --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main && \
 	# Build OpenZwave
-	git clone --depth 2 https://github.com/OpenZWave/open-zwave.git /src/open-zwave && \
-	# git clone -b 1.4 --single-branch https://github.com/OpenZWave/open-zwave.git /src/open-zwave && \
+	git clone https://github.com/OpenZWave/open-zwave.git /src/open-zwave && \
 	ln -s /src/open-zwave /src/open-zwave-read-only && \
 	cd /src/open-zwave && \
 	make && \
@@ -71,16 +62,15 @@ RUN apk add --no-cache --virtual=build-dependencies \
 	cd /src/domoticz && \
 	cmake \
 	 	-DBUILD_SHARED_LIBS=True \
-	 	-DCMAKE_BUILD_TYPE=Release CMakeLists.txt \
+	 	-DCMAKE_BUILD_TYPE=Release \
 		-DCMAKE_INSTALL_PREFIX=/opt/domoticz \
 		-DOpenZWave=/usr/lib/libopenzwave.so \
 		-DUSE_BUILTIN_LUA=OFF \
 		-DUSE_BUILTIN_MQTT=OFF \
 		-DUSE_BUILTIN_SQLITE=OFF \
-		-DUSE_STATIC_OPENZWAVE=OFF \
-		-DUSE_STATIC_LIBSTDCXX=OFF \
 		-DUSE_STATIC_BOOST=OFF \
-		-DUSE_OPENSSL_STATIC=OFF \
+		-DUSE_STATIC_LIBSTDCXX=OFF \
+		-DUSE_STATIC_OPENZWAVE=OFF \
 		-Wno-dev && \
 	make && \
 	make install && \

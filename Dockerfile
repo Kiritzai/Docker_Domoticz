@@ -19,6 +19,7 @@ RUN apk add --no-cache --virtual=build-dependencies \
 		automake \
 		binutils \
 		boost \
+		boost-dev \
 		boost-system \
 		boost-thread \
 		curl \

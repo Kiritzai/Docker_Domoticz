@@ -12,7 +12,7 @@ RUN apk add --no-cache \
 		boost-date_time \
 		sqlite sqlite-dev \
 		curl libcurl curl-dev \
-		libssl1.0 libressl-dev \
+		libssl1.1 libressl-dev \
 		libusb libusb-dev \
 		libusb-compat libusb-compat-dev \
 		lua5.2-dev \

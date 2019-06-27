@@ -3,28 +3,43 @@ FROM alpine:3.10
 LABEL maintainer="Kiritzai"
 
 RUN apk add --no-cache \
-		git \
-		python3-dev \
-		build-base cmake \
+		build-base \
 		boost-dev \
-		boost-thread \
-		boost-system \
 		boost-date_time \
-		sqlite sqlite-dev \
-		curl libcurl curl-dev \
-		libssl1.1 libressl-dev \
-		libusb libusb-dev \
-		libusb-compat libusb-compat-dev \
+		boost-system \
+		boost-thread \
+		coreutils \
+		curl \
+		curl-dev \
+		eudev \
+		eudev-dev \
+		git \
+		gcc \
+		g++ \
+		libcurl \
+		libssl1.1 \
+		libmicrohttpd \
+		libressl-dev \
+		libusb \
+		libusb-dev \
+		libusb-compat \
+		libusb-compat-dev \
 		lua5.2-dev \
+		make \
 		minizip-dev \
 		mosquitto-dev \
-		coreutils \
+		musl-dev \
+		python3-dev \
+		sqlite \
+		sqlite-dev \
 		tzdata \
-		zlib zlib-dev \
-		udev eudev-dev \
+		zlib \
+		zlib-dev \
 		linux-headers && \
+	apk add cmake --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main && \
 	# Build OpenZwave
 	git clone --depth 2 https://github.com/OpenZWave/open-zwave.git /src/open-zwave && \
+	# git clone -b 1.4 --single-branch https://github.com/OpenZWave/open-zwave.git /src/open-zwave && \
 	ln -s /src/open-zwave /src/open-zwave-read-only && \
 	cd /src/open-zwave && \
 	make && \
@@ -39,10 +54,9 @@ RUN apk add --no-cache \
 	# Build Domoticz
 	git clone https://github.com/domoticz/domoticz.git /src/domoticz && \
 	cd /src/domoticz && \
-	git reset --hard ${APP_HASH} && \
 	cmake \
 	 	-DBUILD_SHARED_LIBS=True \
-	 	-DCMAKE_BUILD_TYPE=Release \
+	 	-DCMAKE_BUILD_TYPE=Release CMakeLists.txt \
 		-DCMAKE_INSTALL_PREFIX=/opt/domoticz \
 		-DOpenZWave=/usr/lib/libopenzwave.so \
 		-DUSE_BUILTIN_LUA=OFF \
@@ -50,14 +64,18 @@ RUN apk add --no-cache \
 		-DUSE_BUILTIN_MQTT=OFF \
 		-DUSE_BUILTIN_SQLITE=OFF \
 		-DUSE_STATIC_OPENZWAVE=OFF \
+		-DUSE_STATIC_LIBSTDCXX=OFF \
+		-DUSE_STATIC_BOOST=OFF \
+		-DUSE_OPENSSL_STATIC=OFF \
 		-Wno-dev && \
 	make && \
 	make install && \
 	rm -rf /src/domoticz/ && \
 	# Cleanup
-	apk del \ 
+	apk del --purge \
 		git \
-		build-base cmake \
+		build-base \
+		cmake \
 		boost-dev \
 		sqlite-dev \
 		curl-dev \

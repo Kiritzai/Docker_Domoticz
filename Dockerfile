@@ -74,7 +74,6 @@ RUN apk add --no-cache --virtual=build-dependencies \
 		-DCMAKE_INSTALL_PREFIX=/opt/domoticz \
 		-DOpenZWave=/usr/lib/libopenzwave.so \
 		-DUSE_BUILTIN_LUA=OFF \
-		-DUSE_BUILTIN_MINIZIP=OFF \
 		-DUSE_BUILTIN_MQTT=OFF \
 		-DUSE_BUILTIN_SQLITE=OFF \
 		-DUSE_STATIC_OPENZWAVE=OFF \

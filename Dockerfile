@@ -13,41 +13,44 @@ LABEL org.label-schema.vcs-ref=$APP_HASH \
       org.label-schema.license="GPLv3" \
       org.label-schema.build-date=$BUILD_DATE
 
-RUN apk add --no-cache \
-		build-base \
-		boost-dev \
-		boost-date_time \
+RUN apk add --no-cache --virtual=build-dependencies \
+		argp-standalone \
+		autoconf \
+		automake \
+		binutils \
+		boost \
 		boost-system \
 		boost-thread \
-		coreutils \
 		curl \
+		eudev-libs \
+		libressl \
+		openssh \
+		python3-dev \
+		boost-dev \
+		confuse-dev \
 		curl-dev \
-		eudev \
+		doxygen \
 		eudev-dev \
-		git \
-		gcc \
 		g++ \
+		gcc \
+		git \
+		gzip \
+		jq \
 		libcurl \
-		libssl1.1 \
-		libmicrohttpd \
+		libftdi1-dev \
 		libressl-dev \
-		libusb \
-		libusb-dev \
-		libusb-compat \
 		libusb-compat-dev \
+		libusb-dev \
+		linux-headers \
 		lua5.2-dev \
 		make \
-		minizip-dev \
 		mosquitto-dev \
 		musl-dev \
-		python3-dev \
-		sqlite \
+		pkgconf \
 		sqlite-dev \
-		tzdata \
-		zlib \
-		zlib-dev \
-		linux-headers && \
-	apk add cmake --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main && \
+		tar \
+		zlib-dev && \
+	apk add cmake --no-cache --virtual=build-dependencies-edge --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main && \
 	# Build OpenZwave
 	git clone --depth 2 https://github.com/OpenZWave/open-zwave.git /src/open-zwave && \
 	# git clone -b 1.4 --single-branch https://github.com/OpenZWave/open-zwave.git /src/open-zwave && \
@@ -84,19 +87,8 @@ RUN apk add --no-cache \
 	rm -rf /src/domoticz/ && \
 	# Cleanup
 	apk del --purge \
-		git \
-		build-base \
-		cmake \
-		boost-dev \
-		sqlite-dev \
-		curl-dev \
-		libressl-dev \
-		libusb-dev \
-		libusb-compat-dev \
-		coreutils \
-		zlib-dev \
-		eudev-dev \
-		linux-headers
+		build-dependencies \
+		build-dependencies-edge
 
 VOLUME /config
 

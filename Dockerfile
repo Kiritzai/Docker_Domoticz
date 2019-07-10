@@ -54,7 +54,6 @@ RUN apk add --no-cache \
 	# Build Domoticz
 	git clone https://github.com/domoticz/domoticz.git /src/domoticz && \
 	cd /src/domoticz && \
-	git checkout 4.10717 && \
 	cmake \
 	 	-DBUILD_SHARED_LIBS=True \
 	 	-DCMAKE_BUILD_TYPE=Release CMakeLists.txt \

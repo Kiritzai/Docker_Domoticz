@@ -39,7 +39,7 @@ RUN apk add --no-cache \
 		zlib \
 		zlib-dev \
 		linux-headers && \
-	echo $TZ > /etc/timezone && \
+	cp /usr/share/zoneinfo/Europe/Amsterdam /etc/localtime && \
 	dpkg-reconfigure tzdata && \
 	apk add cmake --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main && \
 	# Build OpenZwave

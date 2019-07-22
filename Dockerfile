@@ -40,7 +40,6 @@ RUN apk add --no-cache \
 		zlib-dev \
 		linux-headers && \
 	cp /usr/share/zoneinfo/Europe/Amsterdam /etc/localtime && \
-	dpkg-reconfigure tzdata && \
 	apk add cmake --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main && \
 	# Build OpenZwave
 	git clone --depth 2 https://github.com/OpenZWave/open-zwave.git /src/open-zwave && \

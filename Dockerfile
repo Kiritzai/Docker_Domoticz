@@ -72,7 +72,7 @@ RUN apk add --no-cache \
 	make && \
 	make install && \
 	rm -rf /src/domoticz/ && \
-	ENV TZ Europe/Amsterdam
+	ENV TZ Europe/Amsterdam && \
 	# Cleanup
 	apk del --purge \
 		git \

@@ -3,6 +3,7 @@ FROM alpine:3.10
 LABEL maintainer="Kiritzai"
 
 RUN apk add --no-cache \
+		tzdata \
 		build-base \
 		boost-dev \
 		boost-date_time \
@@ -71,6 +72,7 @@ RUN apk add --no-cache \
 	make && \
 	make install && \
 	rm -rf /src/domoticz/ && \
+	ENV TZ Europe/Amsterdam
 	# Cleanup
 	apk del --purge \
 		git \

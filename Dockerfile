@@ -37,6 +37,7 @@ RUN apk add --no-cache \
 		zlib \
 		zlib-dev \
 		linux-headers && \
+	export TZ='Europe/Amsterdam' && \
 	apk add cmake --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main && \
 	# Build OpenZwave
 	git clone --depth 2 https://github.com/OpenZWave/open-zwave.git /src/open-zwave && \
@@ -72,7 +73,6 @@ RUN apk add --no-cache \
 	make && \
 	make install && \
 	rm -rf /src/domoticz/ && \
-	ENV TZ Europe/Amsterdam && \
 	# Cleanup
 	apk del --purge \
 		git \

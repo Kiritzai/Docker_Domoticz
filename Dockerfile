@@ -2,6 +2,8 @@ FROM alpine:3.10
 
 LABEL maintainer="Kiritzai"
 
+ENV TZ=Europe/Amsterdam
+
 RUN apk add --no-cache \
 		tzdata \
 		build-base \
@@ -37,7 +39,8 @@ RUN apk add --no-cache \
 		zlib \
 		zlib-dev \
 		linux-headers && \
-	export TZ='Europe/Amsterdam' && \
+	echo $TZ > /etc/timezone && \
+	dpkg-reconfigure tzdata && \
 	apk add cmake --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main && \
 	# Build OpenZwave
 	git clone --depth 2 https://github.com/OpenZWave/open-zwave.git /src/open-zwave && \

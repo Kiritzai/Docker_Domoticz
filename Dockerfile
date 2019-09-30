@@ -6,6 +6,7 @@ ENV TZ=Europe/Amsterdam
 
 RUN apk add --no-cache \
 		tzdata \
+		bluez \
 		build-base \
 		boost-dev \
 		boost-date_time \

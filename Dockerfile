@@ -56,6 +56,9 @@ RUN apk add --no-cache \
 	install && \
 	cd / && \
 	rm -rf /src/open-zwave && \
+	# Make Bluetooth Detection
+	wget https://raw.githubusercontent.com/jmleglise/mylittle-domoticz/master/Presence-detection-beacon/check_beacon_presence.py -O /usr/local/bin/
+	chmod 755 /usr/local/bin/check_beacon_presence.py
 	# Build Domoticz
 	git clone https://github.com/domoticz/domoticz.git /src/domoticz && \
 	cd /src/domoticz && \
